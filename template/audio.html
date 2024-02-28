@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/audio.css' %}">
+<div class="wrapper" style="transform: none;">
+    <main style="transform: none;">
+        <div class="container" style="transform: none;">
+            <div class="single-layout" style="transform: none;">
+                <div class="single-layout__center sticky-content pr-20"
+                    style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+
+
+                    <div class="theiaStickySidebar"
+                        style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none; left: 34.2px; top: 0px;">
+                        <div class="block-title"><span>Audio xabarlar</span></div>
+                        <div class="audio-block" id="jp_container_1">
+
+                            <div class="audio-items-wrapper optiscroll jp-playlist" id="scroll">
+
+                                {% for audio_new in audio_news %}
+                                <div class="audio-item">
+                                    <a class="item__img-block playimgbutton"><img style="width:150px; height:100px;"
+                                            src="{{ audio_new.image.url }}"></a>
+                                    <div class="item__info-block">
+                                        <a class="title jp-playlist-item" tabindex="0">{{ audio_new.title }}</a>
+                                        <a class="audio-meta date">
+                                            <audio id="my-audio" rsc="{{audio_new.audio_file.url }}" controls>
+                                                <source src="{{ audio_new.audio_file.url }}" type="audio/mpeg">
+                                            </audio>
+                                        </a>
+                                    </div>
+                                    <div class="share-download">
+                                        <div class="hour"><sub><span class="duration" data-src="{{ audio_new.audio_file.url }}"></span></sub></div><br>
+                                        <div class="data"><sub>{{ audio_new.date|date:"H:i / d.m.Y" }}</sub></div>
+                                    </div>
+                                </div>
+
+                                {% endfor %}
+
+
+                                {% if audio_news.has_next %}
+                                <!-- <div class="breaking-link-wrapper audio-item audio-more"> -->
+                                <button style="padding:1em; color:blue;" id="load-more"
+                                    data-next-page="{{ audio_news.next_page_number }}">Ko'proq yangiliklarni
+                                    ko'rish</button>
+                                <!-- </div> -->
+                                {% endif %}
+                            </div>
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    const audioElements = document.querySelectorAll('audio');
+                                    const durationElements = document.querySelectorAll('.duration');
+
+                                    audioElements.forEach((audio, index) => {
+                                        audio.addEventListener('loadedmetadata', () => {
+                                            const duration = audio.duration;
+                                            const minutes = Math.floor(duration / 60);
+                                            const seconds = Math.floor(duration % 60);
+                                            durationElements[index].innerText = `${minutes}:${seconds}`;
+                                        });
+                                    });
+                                });
+                            </script>
+   
+
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script>
+                                $(document).ready(function () {
+                                    $("#load-more").click(function () {
+                                        const nextPage = $(this).data("next-page");
+                                        $.get("?page=" + nextPage, function (data) {
+                                            const newAudios = $(data).find(".audio-item");
+                                            $(".audio-item:last").after(newAudios);
+
+                                            const newButton = $(data).find("#load-more");
+                                            if (newButton.length) {
+                                                $("#load-more").data("next-page", newButton.data("next-page"));
+                                            } else {
+                                                $("#load-more").remove();
+                                            }
+                                        });
+                                    });
+                                });
+                            </script>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="single-layout__right sticky-block" id="last-newsl"
+                    data="{&quot;url&quot;:&quot;\/uz\/news\/list?f=latest&amp;l=5&quot;,&quot;title&quot;:&quot;So\u2018nggi yangiliklar&quot;,&quot;sub_title&quot;:&quot;Reklama&quot;,&quot;link_title&quot;:&quot;Ko`proq yangiliklar&quot;,&quot;link&quot;:&quot;\/uz\/news\/list&quot;,&quot;mb&quot;:true}"
+                    style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+                    <div class="theiaStickySidebar"
+                        style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none; top: 0px; left: 671.8px;">
+                        <a href="{% url 'news_list'%}" class="block-title"><span>So‘nggi yangiliklar</span></a>
+                        <div class="mb-25" id="news-container">
+                            {% for today_new in today_news %}
+                            <div class="news-item">
+                                <a class="news-lenta" href="#">
+                                    <div class="news-meta"><span>{{ today_new.date|date:"H:i / d.m.Y" }}</span></div>
+                                    <span class="news-lenta__title">{{ today_new.title }}</span>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div> <a href="{% url 'news_list'%}" class="main-btn-v2 w-100">Ko`proq yangiliklar <img
+                                    style="margin-left: 100px;" src="{% static 'images/blue-right-arrow.png' %}"
+                                    alt=""></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+{% endblock content %}
+
+

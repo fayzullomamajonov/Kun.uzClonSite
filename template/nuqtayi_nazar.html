@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="countries" style="transform:none;">
+        <div class="countries-list">
+          <div class="regions">Hududlar</div>
+          <ul class="list">
+            <li><a href="{% url 'toshkent' %}">Toshkent</a></li>
+            <li><a href="#">Qoraqalpog‘iston</a></li>
+            <li><a href="#">Andijon</a></li>
+            <li><a href="#">Farg‘ona</a></li>
+            <li><a href="#">Namangan</a></li>
+            <li><a href="#">Samarqand</a></li>
+            <li><a href="#">Buxoro</a></li>
+            <li><a href="#">Xorazm</a></li>
+            <li><a href="#">Surxondaryo</a></li>
+            <li><a href="#">Qashqadaryo</a></li>
+            <li><a href="#">Jizzax</a></li>
+            <li><a href="#">Sirdaryo</a></li>
+            <li><a href="#">Toshkent vil.</a></li>
+            <li><a href="#">Navoiy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+<div class="wrapper" style="transform: none;">
+    <main style="transform: none;">
+        <div class="container" style="transform: none;">
+            <div class="single-layout mb-0 pt-0" style="transform: none;">
+                <div class="single-layout__center sticky-content pr-20"
+                    style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+                    <div class="theiaStickySidebar"
+                        style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
+                        <div class="block-title mb-0 pt-10 pb-10 pl-15 bg-gray"><span class="text-uppercase">{{cat_main_new.catigorys }} YANGILIKLARI</span></div>
+                        <div class="top-news">
+                            <div class="top-news__big">
+                               
+                                <a class="big-news" href="{% url 'news' cat_main_new.pk %}"><span class="big-news__img"><img
+                                            src="{{ cat_main_new.image.url}}"></span><span class="big-news__content">
+                                        <div class="news-meta"><span>{{ cat_main_new.date|date:"H:i / d.m.Y" }}</span></div>
+                                        <span class="big-news__title">{{cat_main_new.title}}</span><span
+                                            class="big-news__description">{{cat_main_new.short_text|safe }}</span>
+                                    </span>
+                                </a>
+                                
+                            </div>
+                            <div class="top-news__small-items">
+                                <div class="row">
+                                    {% for cat_new_small in cat_second_new %}
+                                    <div class="col-md-6">
+                                        <div class="small-news">
+                                            <a class="small-news__img" href="{% url 'news' cat_new_small.pk %}"><img
+                                                    src="{{cat_new_small.image.url }}"></a>
+                                            <div class="small-news__content">
+                                                <div class="news-meta"><span>{{ cat_new_small.date|date:"H:i / d.m.Y" }}</span></div><a class="small-news__title" href="{% url 'news' cat_new_small.pk %}">{{cat_new_small.title}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            
+                            <div class="row" id="news-list">
+                                {% for cat_new in cat_all_new %}
+                                <div class="col-md-4 mb-25 l-item">
+                                    <div class="news">
+                                        <a class="news__img" href="{% url 'news' cat_new.pk %}"><img src="{{cat_new.image.url}}"></a>
+                                        <div class="news-meta"><span>{{cat_new.date|date:"H:i / d.m.Y"}}</span></div>
+                                        <a class="news__title" href="{% url 'news' cat_new.pk %}">{{cat_new.title}}</a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                                {% if cat_all_new.has_next %}
+                                
+                                <button class="load-more load-more__link" style="width: 100%;" id="load-more"
+                                    data-next-page="{{ cat_all_new.next_page_number }}">Ko'proq yangiliklarni ko'rish
+                                </button>
+                                
+                                {% endif %}
+                        </div>  
+                    </div>
+                </div>
+
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script>
+                    $(document).ready(function () {
+                        $("#load-more").click(function () {
+                            const nextPage = $(this).data("next-page");
+                            $.get("?page=" + nextPage, function (data) {
+                                const newAudios = $(data).find(".l-item");
+                                $(".l-item:last").after(newAudios);
+
+                                const newButton = $(data).find("#load-more");
+                                if (newButton.length) {
+                                    $("#load-more").data("next-page", newButton.data("next-page"));
+                                } else {
+                                    $("#load-more").remove();
+                                }
+                            });
+                        });
+                    });
+                </script>
+
+                <div class="single-layout__right sticky-block" id="last-newsl"
+                    data="{&quot;url&quot;:&quot;\/uz\/news\/list?f=latest&amp;l=5&quot;,&quot;title&quot;:&quot;So\u2018nggi yangiliklar&quot;,&quot;sub_title&quot;:&quot;Reklama&quot;,&quot;link_title&quot;:&quot;Ko`proq yangiliklar&quot;,&quot;link&quot;:&quot;\/uz\/news\/list&quot;,&quot;mb&quot;:true}"
+                    style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+                    <div class="theiaStickySidebar"
+                        style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none; top: 0px; left: 671.8px;">
+                        <a href="/uz/news/list" class="block-title"><span>So‘nggi yangiliklar</span></a>
+                        <div class="mb-25" id="news-container">
+                            {% for today_new in today_news %}
+                            <div class="news-item">
+                                <a class="news-lenta" href="{% url 'news' today_new.pk %}">
+                                    <div class="news-meta"><span>{{ today_new.date|date:"H:i / d.m.Y" }}</span></div>
+                                    <span class="news-lenta__title">{{ today_new.title }}</span>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div> <a href="{% url 'news_list'%}" class="main-btn-v2 w-100">Ko`proq yangiliklar <img style="margin-left: 100px;"
+                            src="{% static 'images/blue-right-arrow.png' %}" alt=""></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

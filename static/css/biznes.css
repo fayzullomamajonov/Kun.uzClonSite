@@ -1,0 +1,42 @@
+.default-page {
+    background-color: #FFFFFF;
+    max-width: 1140px;
+    margin: 20px auto 0 auto;
+    padding: 35px 65px 100px 65px;
+}
+
+.default-page h3 {
+    font-size: 20px;
+    color: #183784;
+    font-weight: 700;
+    text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    margin-top: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    margin-top: 0;
+}
+
+.default-page p {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.67;
+}
+
+a[href]:not([class]) {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}

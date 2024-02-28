@@ -1,0 +1,108 @@
+.search-block {
+    background-color: rgba(216, 216, 216, 0.41);
+    padding: 16px 24px;
+    margin-bottom: 20px;
+}
+
+.block-title {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.bg-gray {
+    background-color: #EFF2F8;
+}
+.pl-15 {
+    padding-left: 15px !important;
+}
+.pb-10 {
+    padding-bottom: 10px !important;
+}
+.pt-10 {
+    padding-top: 10px !important;
+}
+.mb-0 {
+    margin-bottom: 0px !important;
+}
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.block-title span {
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    display: block;
+    padding-left: 25px;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.block-title span:before {
+    width: 15px;
+    height: 15px;
+    background: transparent;
+    border: 4px solid #17206A;
+    display: block;
+}
+
+.block-title span::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background-color: #17206A;
+}
+
+.block-title span {
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    display: block;
+    padding-left: 25px;
+}
+
+.block-title span:before {
+    width: 15px;
+    height: 15px;
+    background: transparent;
+    border: 4px solid #17206A;
+    display: block;
+}
+
+.block-title span::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background-color: #17206A;
+}
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}

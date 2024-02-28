@@ -1,0 +1,479 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="container">
+  <div class="countries" style="transform:none;">
+      <div class="countries-list">
+        <div class="regions">Hududlar</div>
+        <ul class="list">
+          <li><a href="{% url 'toshkent' %}">Toshkent</a></li>
+          <li><a href="{% url 'qoraqalpoq' %}">Qoraqalpog‘iston</a></li>
+          <li><a href="{% url 'andijon' %}">Andijon</a></li>
+          <li><a href="{% url 'fargona' %}">Farg‘ona</a></li>
+          <li><a href="{% url 'namangan' %}">Namangan</a></li>
+          <li><a href="{% url 'samarqand' %}">Samarqand</a></li>
+          <li><a href="{% url 'buxoro' %}">Buxoro</a></li>
+          <li><a href="{% url 'xorazm' %}">Xorazm</a></li>
+          <li><a href="{% url 'surxondaryo' %}">Surxondaryo</a></li>
+          <li><a href="{% url 'qashqadaryo' %}">Qashqadaryo</a></li>
+          <li><a href="{% url 'jizzax' %}">Jizzax</a></li>
+          <li><a href="{% url 'sirdaryo' %}">Sirdaryo</a></li>
+          <li><a href="{% url 'toshkentvil' %}">Toshkent vil.</a></li>
+          <li><a href="{% url 'navoiy' %}">Navoiy</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <main>
+    <div class="container mb-50">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="top-news">
+            <div class="top-news__big">
+              <a class="big-news" href="{% url 'news' main_new.pk %}">
+                <span class="big-news__img"
+                  ><img src="{{ main_new.image.url }}"
+                /></span>
+                <span class="big-news__content">
+                  {{text}}
+                  <div class="news-meta">
+                    <span>{{ main_new.date }}{{ type_new }}</span>
+                  </div>
+                  <span class="big-news__title">{{ main_new.title }}</span>
+                  <span class="big-news__description"
+                    >{{ main_new.short_text|safe}}</span
+                  >
+                </span>
+              </a>
+            </div>
+
+            <div class="top-news__small-items">
+              <div class="row">
+                {% for new in second_new %}
+                <div class="col-md-6">
+                  <div class="small-news">
+                    <a class="small-news__img" href="{% url 'news' new.pk %}"
+                      ><img src="{{ new.image.url }}"
+                    /></a>
+                    <div class="small-news__content">
+                      <div class="news-meta"><span>{{ new.date }}</span></div>
+                      <a
+                        class="small-news__title"
+                        href="{% url 'news' new.pk %}"
+                        >{{ new.title }}</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="editor-choice">
+            <div class="block-title">
+              <a href="{% url 'muharrir_tanlovi' %}"><span>Muharrir tanlovi</span></a
+              ><a class="link" href="{% url 'muharrir_tanlovi' %}"
+                >Barchasi
+                <img src="{% static 'images/blue-right-arrow.png' %}" alt=""
+              /></a>
+            </div>
+            <div class="row">
+              {% for muharrir_new in muharrir_news %}
+              <div class="col-md-4">
+                <div class="news">
+                  <div class="news__img p-relative">
+                    <a href="{% url 'news' muharrir_new.pk %}"
+                      ><img src="{{ muharrir_new.image.url }}"
+                    /></a>
+                  </div>
+                  <div class="news-meta">
+                    <span>{{muharrir_new.date}}</span>
+                  </div>
+                  <a class="news__title" href="{% url 'news' muharrir_new.pk %}"
+                    >{{muharrir_new.title|safe}}</a
+                  >
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <a href="#" class="block-title"><span>So`ngi yangiliklar</span></a>
+          <div class="mb-25">
+            {% for today_new in today_news %}
+            <a class="news-lenta" href="{% url 'news' today_new.pk %}">
+              <div class="news-meta">
+                <span>{{today_new.date|date:"H:i"}}</span>
+              </div>
+              <span class="news-lenta__title">{{today_new.title}}</span>
+            </a>
+            {% endfor %}
+          </div>
+          <a href="{% url 'news_list'%}" class="main-btn-v2 w-100"
+            >Ko`proq yangiliklar<img
+              style="margin-left: 100px"
+              src="{% static 'images/blue-right-arrow.png' %}"
+              alt=""
+          /></a>
+        </div>
+      </div>
+    </div>
+    <div class="adv-wrapper">
+      <div class="container">
+        <div id="adfox_162618030148559683"></div>
+        <script>
+          window.Ya.adfoxCode.create({
+            ownerId: 367651,
+            containerId: "adfox_162618030148559683",
+            params: {
+              pp: "g",
+              ps: "eudb",
+              p2: "hhcg",
+            },
+          });
+        </script>
+      </div>
+    </div>
+    <div
+      class="container"
+      id="actual-news-content"
+      data='{"url":"\/news\/list?f=actual","title":"\u0414\u043e\u043b\u0437\u0430\u0440\u0431 \u0445\u0430\u0431\u0430\u0440\u043b\u0430\u0440"}'
+    >
+      <div class="block-title"><span>{{dolzarb_main_new.types}}</span></div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="big-news big-news_column">
+            <div class="big-news__img p-relative">
+              <a href="{% url 'news' dolzarb_main_new.pk %}"
+                ><img src="{{dolzarb_main_new.image.url}}"
+              /></a>
+            </div>
+            <div class="big-news__content">
+              <a
+                class="big-news__title"
+                href="{% url 'news' dolzarb_main_new.pk %}"
+              >
+                {{dolzarb_main_new.title}}</a
+              >
+              <div class="big-news__description">
+                {{ dolzarb_main_new.short_text|safe }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="row">
+            {% for second_new in dolzarb_second_new %}
+            <div class="col-md-6 mb-25">
+              <div class="news">
+                <div class="news__img p-relative">
+                  <a href="{% url 'news' second_new.pk %}"
+                    ><img src="{{ second_new.image.url }}"
+                  /></a>
+                </div>
+                <a class="news__title" href="{% url 'news' second_new.pk %}"
+                  >{{ second_new.title }}</a
+                >
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="interview">
+      <div
+        class="container"
+        id="interview-news-content"
+        data='{"url":"\/news\/list?f=interview","title":"\u0418\u043d\u0442\u0435\u0440\u0432\u044c\u044e","btn_title":"\u0411\u0430\u0440\u0447\u0430\u0441\u0438","img":"\/assets\/3d48c862\/img\/blue-right-arrow.svg","link":"\/interviews"}'
+      >
+        <div class="interview-head space-between">
+          <div class="block-title mb-0 space-between w-100">
+            <span>Interviyu </span
+            ><a class="all-link" href="{% url 'interview' %}"
+              >Interviyu <img src="{% static 'images/blue-right-arrow.png' %}"
+            /></a>
+          </div>
+        </div>
+        <div class="interview-body">
+          <div class="tm-row">
+            {% for intervtu_new in intervtu_news %}
+            <div class="tm-col-3">
+              <div class="interview-post">
+                <a href="{% url 'news' intervtu_new.pk %}" class="white-bg">
+                  <div class="ip-head">
+                    <div class="post-thumbnail">
+                      <img src="{{intervtu_new.image.url}}" />
+                    </div>
+                    <span class="block-word">{{intervtu_new.types }}</span>
+                  </div>
+                  <div class="ip-body">
+                    <div class="post-title">{{ intervtu_new.title }}</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="container"
+      id="day-theme-content-c"
+      data='{"url":"\/time\/news\/main","btn_title":"\u0411\u0430\u0440\u0447\u0430 \u043c\u0430\u049b\u043e\u043b\u0430\u043b\u0430\u0440"}'
+    >
+      <div class="block-title mt-30 mb-30">
+        <a href="{% url 'news' tadbir_main_new.pk %}"
+          ><span>{{ tadbir_main_new.news_title }}</span></a
+        >
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="inquiry-post">
+            <a class="post-box" href="{% url 'news' tadbir_main_new.pk %}">
+              <div class="post-thumb">
+                <img src="{{tadbir_main_new.image.url}}" />
+              </div>
+              <div class="post-body">
+                <h4>{{ tadbir_main_new.title }}</h4>
+              </div>
+            </a>
+          </div>
+        </div>
+        <!-- {% if tadbir_main_new.tg_id  %}
+                <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="kunuzofficial/{{tadbir_main_new.tg_id}}" data-width="100%"></script>
+                {% endif %} -->
+        <div class="col-md-6">
+          <div class="small-post-content">
+            {% for tadbir_new in tadbir_second_new %}
+            <div class="small-post">
+              <a class="d-flex" href="{% url 'news' tadbir_new.pk %}">
+                <div class="sm-thumbnail">
+                  <img src="{{tadbir_new.image.url}}" />
+                </div>
+                <div class="post-title">
+                  <h4>{{ tadbir_new.title }}</h4>
+                </div>
+              </a>
+            </div>
+            <!-- {% if tadbir_new.tg_id  %}
+                            <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="kunuzofficial/{{tadbir_new.tg_id}}" data-width="100%"></script>
+                            {% endif %} -->
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="container"
+      id="authored-news"
+      data='{"title_all":"\u0411\u0430\u0440\u0447\u0430\u0441\u0438","url":"\/news\/list?f=authored","img":"\/assets\/3d48c862\/img\/blue-right-arrow.svg"}'
+    >
+      <div class="row">
+        <div class="col-md-12">
+          <div class="block-title mt-30 mb-30">
+            <span>Maqolalar</span
+            ><a class="all-link" href="{% url 'maqolalar' %}"
+              >Barchasi<img src="{% static 'images/blue-right-arrow.png' %}"
+            /></a>
+          </div>
+          <div class="row">
+            {% for maqola_new in maqola_news %}
+            <div class="col-md-4 mb-30">
+              <div class="news">
+                <div class="news__img p-relative">
+                  <a href="{% url 'news' maqola_new.pk %}"
+                    ><img src="{{ maqola_new.image.url }}"
+                  /></a>
+                </div>
+                <a class="news__title" href="{% url 'news' maqola_new.pk %}"
+                  >{{ maqola_new.title }}</a
+                >
+                <div class="news__desc">{{maqola_new.short_text|safe}}</div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="business-block"
+      id="business-news"
+      data='{"url":"\/news\/list?f=business","title":"\u0411\u0438\u0437\u043d\u0435\u0441","link_title":"\u04b2\u0430\u043c\u043a\u043e\u0440\u043b\u0438\u043a \u049b\u0438\u043b\u0438\u0448","link":"\/page\/reklama","img":"\/assets\/3d48c862\/img\/blue-right-arrow.svg","logo":"\/assets\/3d48c862\/img\/kun-uz-logo.svg","max_card":7}'
+    >
+      <div class="business-block__head mb-20">
+        <div class="container space-between">
+          <div>
+            <img src="{% static 'images/logo_kun_uz.jpg' %}" /><span
+              >Biznes</span
+            >
+          </div>
+          <a class="all-link" href="{% url 'biznes' %}"
+            >Hamkorlik qilish<img
+              src="{% static 'images/blue-right-arrow.png' %}"
+          /></a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="slide-container swiper">
+          <div class="slide-content">
+            <div class="card-wrapper swiper-wrapper">
+              {% for biznes_new in biznes_news %}
+              <div class="card swiper-slide">
+                <div class="image-content">
+                  <span class="overlay"></span>
+                  <a href="{% url 'news' biznes_new.pk %}"></a>
+                  <div class="card-image">
+                    <img src="{{ biznes_new.image.url }}" alt="" class="card-img">
+                  </div>
+                </a>
+                </div>
+                <div class="card-content">
+                  <h2 class="name"><a style="margin-top: 20px;" href="{% url 'news' biznes_new.pk %}">{{biznes_new.title}}</a></h2>
+                  <!-- <button class="button"> view </button> -->
+                </div>
+              </div>
+              
+              {% endfor %}
+            </div>
+          </div>
+          <div class="swiper-button-next swiper-navBtn"></div>
+          <div class="swiper-button-prev swiper-navBtn"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+ 
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-md-6"
+          id="video-news-content"
+          data='{"title":"\u0412\u0438\u0434\u0435\u043e\u044f\u043d\u0433\u0438\u043b\u0438\u043a\u043b\u0430\u0440","url":"\/news\/list?f=video&amp;t=1","link":"\/news\/list?f=video","img":"\/assets\/3d48c862\/img\/blue-right-arrow.svg","btn_title":"\u0411\u0430\u0440\u0447\u0430 \u043c\u0430\u049b\u043e\u043b\u0430\u043b\u0430\u0440"}'
+        >
+          <div class="block-title mt-20 mb-20">
+            <span>Video Yangiliklar</span
+            ><a class="all-link" href="{% url 'video_news' %}"
+              >Barcha maqolalar<img
+                src="{% static 'images/blue-right-arrow.png' %}"
+            /></a>
+          </div>
+          <a class="top-gallery" href="{% url 'news' video_main_new.pk %}"
+            ><span
+              class="top-gallery__img"
+              style="background-image: url('{{ video_main_new.image.url}}')"
+            ></span
+            ><span class="top-gallery__play-icon video"></span
+            ><span class="top-gallery__title"
+              >{{ video_main_new.title }}</span
+            ></a
+          >
+          <div class="row">
+            {% for video_new in video_second_new %}
+            <div class="col-md-6">
+              <div class="gallery-item">
+                <a
+                  class="gallery-item__img"
+                  href="{% url 'news' video_new.pk %}"
+                >
+                  <div
+                    class="img"
+                    style="background-image: url('{{ video_new.image.url }}')"
+                  ></div>
+                  <span class="gallery-item__play-icon video"></span>
+                </a>
+                <div class="news-meta">
+                  <span>{{ video_new.date }}</span
+                  ><a class="category" href="{% url 'news' video_new.pk %}"
+                    >{{ video_new.catigorys }}</a
+                  >
+                </div>
+                <a
+                  class="gallery-item__title"
+                  href="{% url 'news' video_new.pk %}"
+                  >{{ video_new.title }}</a
+                >
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div
+          class="col-md-6"
+          id="photo-news-content"
+          data='{"url":"\/news\/list?f=photo&amp;t=1","link":"\/news\/list?f=photo","title":"\u0424\u043e\u0442\u043e\u044f\u043d\u0433\u0438\u043b\u0438\u043a\u043b\u0430\u0440","img":"\/assets\/3d48c862\/img\/blue-right-arrow.svg","btn_title":"\u0411\u0430\u0440\u0447\u0430 \u043c\u0430\u049b\u043e\u043b\u0430\u043b\u0430\u0440"}'
+        >
+          <div class="block-title mt-20 mb-20">
+            <span>Fotoyangiliklar</span
+            ><a class="all-link" href="{% url 'foto_news' %}"
+              >Barcha maqolalar<img
+                src="{% static 'images/blue-right-arrow.png' %}"
+            /></a>
+          </div>
+          <a class="top-gallery" href="{% url 'news' photo_main_new.pk %}"
+            ><span
+              class="top-gallery__img"
+              style="background-image: url('{{ photo_main_new.image.url }}')"
+            ></span
+            ><span class="top-gallery__play-icon image"></span
+            ><span class="top-gallery__title"
+              >{{ photo_main_new.title }}</span
+            ></a
+          >
+          <div class="row">
+            {% for photo_new in photo_second_new %}
+            <div class="col-md-6">
+              <div class="gallery-item">
+                <a
+                  class="gallery-item__img"
+                  href="{% url 'news' photo_new.pk %}"
+                >
+                  <div
+                    class="img"
+                    style="background-image: url('{{ photo_new.image.url }}')"
+                  ></div>
+                  <span class="gallery-item__play-icon image"></span>
+                </a>
+                <div class="news-meta">
+                  <span>{{ photo_new.date }}</span
+                  ><a class="category" href="{% url 'news' photo_new.pk %}"
+                    >{{ photo_new.catigorys }}</a
+                  >
+                </div>
+                <a
+                  class="gallery-item__title"
+                  href="{% url 'news' photo_new.pk %}"
+                  >{{ photo_new.title }}</a
+                >
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="adv-wrapper" style="background-color: #fff">
+      <div class="container">
+        <div id="adfox_162618030148559653"></div>
+        <script>
+          window.Ya.adfoxCode.create({
+            ownerId: 367651,
+            containerId: "adfox_162618030148559653",
+            params: {
+              pp: "g",
+              ps: "eudb",
+              p2: "hhcg",
+            },
+          });
+        </script>
+      </div>
+    </div>
+  </main>
+</div>
+
+{% endblock content %}

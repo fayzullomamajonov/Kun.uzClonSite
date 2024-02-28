@@ -1,0 +1,414 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/news.css' %}">
+<div class="wrapper">
+  <main>
+    <div class="container mb-50">
+      <div class="container">
+        <div class="countries" style="transform:none;">
+            <div class="countries-list">
+              <div class="regions">Hududlar</div>
+              <ul class="list">
+                <li><a href="{% url 'toshkent' %}">Toshkent</a></li>
+                <li><a href="#">Qoraqalpog‘iston</a></li>
+                <li><a href="#">Andijon</a></li>
+                <li><a href="#">Farg‘ona</a></li>
+                <li><a href="#">Namangan</a></li>
+                <li><a href="#">Samarqand</a></li>
+                <li><a href="#">Buxoro</a></li>
+                <li><a href="#">Xorazm</a></li>
+                <li><a href="#">Surxondaryo</a></li>
+                <li><a href="#">Qashqadaryo</a></li>
+                <li><a href="#">Jizzax</a></li>
+                <li><a href="#">Sirdaryo</a></li>
+                <li><a href="#">Toshkent vil.</a></li>
+                <li><a href="#">Navoiy</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <div class="single-layout">
+        <div
+          class="single-layout__left"
+          id="last-newsl"
+          data='{"url":"\/uz\/news\/list?f=latest&amp;l=5","title":"So\u2018nggi yangiliklar","mb":true}'
+        >
+          <a href="/uz/news/list" class="block-title"
+            ><span>So‘nggi yangiliklar</span></a
+          >
+          <div class="mb-25">
+            {% for today_new in today_news %}
+            <div class="news-item">
+              <a class="news-lenta" href="{% url 'news' today_new.pk %}">
+                <div class="news-meta">
+                  <span>{{ today_new.date|date:"H:i" }}</span>
+                </div>
+                <span class="news-lenta__title">{{ today_new.title }}</span>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="mr-25">
+            <a class="main-btn w-100" href="/uz/news/list"
+              >Ko`proq yangiliklar</a
+            >
+          </div>
+        </div>
+
+        <div class="single-layout__center slc">
+          <div class="single-header">
+            <div class="single-header__meta">
+              <div class="date">{{ news.date|date:"H:i" }}</div>
+              <div class="view">10724</div>
+
+              <div class="share-news">
+                <div class="share-news-label">Ulashing</div>
+                <div class="share-news-dropdown">
+                  <div class="list">
+                    <a
+                      href="https://www.facebook.com/sharer.php?s=100&amp;p[title]=O%E2%80%98zbekistonda%20yangi%20tahrirdagi%20Konstitutsiya%20kuchga%20kirdi&amp;u=https%3A%2F%2Fkun.uz%2Fuz%2F52742097&amp;t=O%E2%80%98zbekistonda%20yangi%20tahrirdagi%20Konstitutsiya%20kuchga%20kirdi&amp;p[summary]=O%E2%80%98zbekiston%20Markaziy%20saylov%20komissiyasi%2030%20aprel%20kuni%20o%E2%80%98tkazilgan%20referendum%20yakunlari%20to%E2%80%98g%E2%80%98risida%20qaror%20qabul%20qildi.&amp;p[url]=https%3A%2F%2Fkun.uz%2Fuz%2F52742097"
+                      class="share-link s_facebook"
+                      >Facebook</a
+                    >
+                    <a
+                      href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fkun.uz%2Fuz%2F52742097&amp;text=O%E2%80%98zbekiston%20Markaziy%20saylov%20komissiyasi%2030%20aprel%20kuni%20o%E2%80%98tkazilgan%20referendum%20yakunlari%20to%E2%80%98g%E2%80%98risida%20qaror%20qabul%20qildi."
+                      class="share-link s_twitter"
+                      >Twitter</a
+                    >
+                    <a
+                      href="https://telegram.me/share/url?url=https%3A%2F%2Fkun.uz%2Fuz%2F52742097 O%E2%80%98zbekistonda%20yangi%20tahrirdagi%20Konstitutsiya%20kuchga%20kirdi"
+                      class="share-link s_telegram"
+                      >Telegram
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h1 class="single-header__title" style="margin-bottom: -0.1em">
+              {{news.title}}
+            </h1>
+          </div>
+
+          <div class="single-content">
+            <h4 style="font-weight: bold">{{ news.short_text|safe }}</h4>
+            <!-- <div class="main-img">
+              <img
+                src="{{ news.image.url }}"
+              />
+              <div class="main-img__caption"></div>
+            </div> -->
+            {{ news.descriptions|safe }}
+          </div>
+
+          <div class="pl-20 pr-20">
+            <!-- <ul class="tags-ui reset-list">
+              <li class="tags-ui__items">
+                <div class="tags-ui__item">
+                  <a
+                    href="/uz/news/list?f=tag&amp;name=%D1%80%D0%B5%D1%84%D0%B5%D1%80%D0%B5%D0%BD%D0%B4%D1%83%D0%BC"
+                    class="tags-ui__link"
+                    >#referendum</a
+                  >
+                </div>
+                <div class="tags-ui__item">
+                  <a
+                    href="/uz/news/list?f=tag&amp;name=%D0%9C%D0%A1%D0%9A"
+                    class="tags-ui__link"
+                    >#MSK</a
+                  >
+                </div>
+                <div class="tags-ui__item">
+                  <a
+                    href="/uz/news/list?f=tag&amp;name=%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D0%B8%D1%82%D1%83%D1%86%D0%B8%D1%8F"
+                    class="tags-ui__link"
+                    >#Konstitutsiya</a
+                  >
+                </div>
+              </li>
+            </ul> -->
+            {% if news_titles.news_title %}
+            <div class="theme-ui">
+              <div class="theme-ui__label">Mavzu</div>
+              <div class="theme-ui__wrapper">
+                <img
+                  class="theme-ui__img"
+                  src="{{ news_titles.image.url }}"
+                  role="presentation"
+                />
+                <div class="flex-1 pl-20 pr-25">
+                  <a
+                    class="theme-ui__title"
+                    href="#"
+                    >{{ news_titles.news_title }}</a
+                  >
+                  <div class="theme-ui__description"></div>
+                </div>
+                <a
+                  class="theme-ui__link"
+                  href="#"
+                  >Barchasi</a
+                >
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="single-layout__right">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              overflow: hidden;
+            "
+          >
+            <!--Тип баннера: Desktop 240x400-->
+            <div id="adfox_16664203079898260">
+              <div style="width: 240px; height: 400px">
+                <iframe
+                  scrolling="no"
+                  marginwidth="0"
+                  marginheight="0"
+                  frameborder="0"
+                  style="
+                    min-height: 100%;
+                    height: 100%;
+                    min-width: 100%;
+                    width: 1px;
+                  "
+                ></iframe>
+              </div>
+            </div>
+            <script>
+              window.yaContextCb.push(() => {
+                Ya.adfoxCode.createAdaptive(
+                  {
+                    ownerId: 367651,
+                    containerId: "adfox_16664203079898260",
+                    params: {
+                      p1: "cwceg",
+                      p2: "hwtt",
+                    },
+                  },
+                  ["desktop", "tablet"],
+                  {
+                    tabletWidth: 830,
+                    phoneWidth: 480,
+                    isAutoReloads: false,
+                  }
+                );
+              });
+            </script>
+          </div>
+          <div
+            id="recomended-news-content"
+            data='{"url":"\/uz\/news\/list?f=recommended","ph":false}'
+          >
+            <div class="block-title"><span>Tavsiya etamiz</span></div>
+            <a
+              class="news-recommended"
+              href="/uz/news/2023/05/01/xitoyning-vassaliga-aylanayotgan-rossiya-nega-bu-endi-uyatli-hol-emas"
+              ><div class="pl-18">
+                <div class="news-meta"><span>15:09 / 01.05.2023</span></div>
+              </div>
+              <span class="news-recommended__title"
+                >«Xitoyning vassaliga aylanayotgan Rossiya»: nega bu endi uyatli
+                hol emas?</span
+              ></a
+            ><a
+              class="news-recommended"
+              href="/uz/news/2023/05/01/holandning-50-goli-va-liverpulda-triller-kun-oyinlari"
+              ><div class="pl-18">
+                <div class="news-meta"><span>12:53 / 01.05.2023</span></div>
+              </div>
+              <span class="news-recommended__title"
+                >Holandning 50 goli va Liverpulda triller. Kun o‘yinlari</span
+              ></a
+            ><a
+              class="news-recommended"
+              href="/uz/news/2023/04/29/hozir-hujjatsiz-yurish-ayniqsa-xavfli-rossiyadagi-ozbek-yuristi-bilan-suhbat"
+              ><div class="pl-18">
+                <div class="news-meta"><span>20:42 / 29.04.2023</span></div>
+              </div>
+              <span class="news-recommended__title"
+                >Hozir hujjatsiz yurish ayniqsa xavfli - Rossiyadagi o‘zbek
+                yuristi bilan suhbat</span
+              ></a
+            ><a
+              class="news-recommended"
+              href="/uz/news/2023/04/29/tilanchining-sirli-olimi-navoiydagi-mudhish-qotillik-tarixi"
+              ><div class="pl-18">
+                <div class="news-meta"><span>15:47 / 29.04.2023</span></div>
+              </div>
+              <span class="news-recommended__title"
+                >Tilanchining sirli o‘limi – Navoiydagi mudhish qotillik
+                tarixi&nbsp;</span
+              ></a
+            >
+          </div>
+          <div
+            class="mb-20"
+            id="top-news-content"
+            data='{"url":"\/uz\/news\/list?f=top","ph":false}'
+          >
+            <div class="block-title"><span>Ko‘p o‘qilganlar</span></div>
+            <a
+              class="news-recommended"
+              href="/uz/news/2023/04/29/tilanchining-sirli-olimi-navoiydagi-mudhish-qotillik-tarixi"
+              ><div class="pl-18">
+                <div class="news-meta"><span>15:47 / 29.04.2023</span></div>
+              </div>
+              <span class="news-recommended__title"
+                >Tilanchining sirli o‘limi – Navoiydagi mudhish qotillik
+                tarixi&nbsp;</span
+              ></a
+            ><a
+              class="news-recommended"
+              href="/uz/news/2023/04/27/rossiyada-qozogistonning-bir-qismini-ozlashtirish-taklif-etildi-toqayev-javob-qaytardi"
+              ><div class="pl-18">
+                <div class="news-meta"><span>21:46 / 27.04.2023</span></div>
+              </div>
+              <span class="news-recommended__title"
+                >Rossiyada Qozog‘istonning bir qismini o‘zlashtirish taklif
+                etildi, To‘qayev javob qaytardi</span
+              ></a
+            ><a
+              class="news-recommended"
+              href="/uz/news/2023/04/27/sirdaryoda-hojatxonadan-uch-kishi-jasadi-topildi"
+              ><div class="pl-18">
+                <div class="news-meta"><span>22:40 / 27.04.2023</span></div>
+              </div>
+              <span class="news-recommended__title"
+                >Sirdaryoda hojatxonadan uch kishi jasadi topildi&nbsp;</span
+              ></a
+            ><a
+              class="news-recommended"
+              href="/uz/news/2023/04/27/samarqandda-6-bosh-bogoz-qoy-chavaqlanib-egasiga-tahdidomuz-xat-qoldirildi"
+              ><div class="pl-18">
+                <div class="news-meta"><span>16:45 / 27.04.2023</span></div>
+              </div>
+              <span class="news-recommended__title"
+                >Samarqandda 6 bosh bo‘g‘oz qo‘y chavaqlanib, egasiga tahdidomuz
+                xat qoldirildi</span
+              ></a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="single-layout">
+        <div class="single-layout__center">
+          <div class="adv-wrapper" style="background-color: #fff">
+            <div class="container">
+              <div id="adfox_162618030148559683"></div>
+              <script>
+                window.Ya.adfoxCode.create({
+                  ownerId: 367651,
+                  containerId: "adfox_162618030148559683",
+                  params: {
+                    pp: "g",
+                    ps: "eudb",
+                    p2: "hhcg",
+                  },
+                });
+              </script>
+            </div>
+          </div>
+          <div class="block-title"><span>Mavzuga oid</span></div>
+          <div class="row">
+            {% for related_new in related_news %}
+            <div class="col-md-3 mb-25">
+              <div class="news">
+                <div class="news__img p-relative">
+                  <a
+                    class="news__category"
+                    style="
+                      background-color: #17206a;
+                      padding: 6px 16px;
+                      top: unset;
+                      bottom: 0;
+                      position: absolute;
+                      top: 155px;
+                      left: 0;
+                      z-index: 2;
+                      padding: 4px 14px;
+                      color: #ffffff;
+                      font-size: 12px;
+                      font-weight: 500;
+                    "
+                    href="{% url 'uzbekiston' %}"
+                    >{{ related_new.catigorys }}</a
+                  ><a href="{% url 'news' related_new.pk %}"
+                    ><img src="{{ related_new.image.url }}"
+                  /></a>
+                </div>
+                <div class="news-meta">
+                  <span>{{ related_new.date|date:"H:i / d.m.Y" }}</span>
+                </div>
+                <a class="news__title" href="{% url 'uzbekiston' %}"
+                  >{{related_new.title}}</a
+                >
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+
+          <div
+          class="business-block"
+          id="business-news"
+          data='{"url":"\/news\/list?f=business","title":"\u0411\u0438\u0437\u043d\u0435\u0441","link_title":"\u04b2\u0430\u043c\u043a\u043e\u0440\u043b\u0438\u043a \u049b\u0438\u043b\u0438\u0448","link":"\/page\/reklama","img":"\/assets\/3d48c862\/img\/blue-right-arrow.svg","logo":"\/assets\/3d48c862\/img\/kun-uz-logo.svg","max_card":7}'
+        >
+          <div class="business-block__head mb-20">
+            <div class="container space-between">
+              <div>
+                <img src="{% static 'images/logo_kun_uz.jpg' %}" /><span
+                  >Biznes</span
+                >
+              </div>
+              <a class="all-link" href="#"
+                >Hamkorlik qilish<img
+                  src="{% static 'images/blue-right-arrow.png' %}"
+              /></a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="slide-container swiper">
+              <div class="slide-content">
+                <div class="card-wrapper swiper-wrapper">
+                  {% for biznes_new in biznes_news %}
+                  <div class="card swiper-slide">
+                    <div class="image-content">
+                      <span class="overlay"></span>
+                      <a href="{% url 'news' biznes_new.pk %}"></a>
+                      <div class="card-image">
+                        <img src="{{ biznes_new.image.url }}" alt="" class="card-img">
+                      </div>
+                    </a>
+                    </div>
+                    <div class="card-content">
+                      <h2 class="name"><a style="margin-top: 20px;" href="{% url 'news' biznes_new.pk %}">{{biznes_new.title}}</a></h2>
+                      <!-- <button class="button"> view </button> -->
+                    </div>
+                  </div>
+                  
+                  {% endfor %}
+                </div>
+              </div>
+              <div class="swiper-button-next swiper-navBtn"></div>
+              <div class="swiper-button-prev swiper-navBtn"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+     
+        </div>
+      <div class="single-layout">
+        <div class="single-layout__left"></div>
+        <div class="single-layout__center"></div>
+        <div class="single-layout__right"></div>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock content %}

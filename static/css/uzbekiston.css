@@ -1,0 +1,251 @@
+element.style {
+    padding-top: 0px;
+    padding-bottom: 1px;
+    position: static;
+    transform: none;
+}
+
+.block-title span {
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    display: block;
+    padding-left: 25px;
+}
+
+.block-title span:before {
+    width: 15px;
+    height: 15px;
+    background: transparent;
+    border: 4px solid #17206A;
+    display: block;
+}
+
+.mb-25 {
+    margin-bottom: 25px !important;
+}
+
+.news-lenta {
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(197, 197, 197, 0.8);
+    margin-bottom: 18px;
+}
+
+a {
+    text-decoration: none;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+a {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.news-meta {
+    margin-bottom: 10px;
+    opacity: 0.8;
+    color: #000000;
+    font-size: 12px;
+    padding-left: 20px;
+    background: url(../img/calendar.svg) no-repeat center left;
+    background-size: contain;
+}
+
+.news-meta > span {
+    color: #8F8F8F;
+    font-weight: 300;
+}
+
+.news-lenta__title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    color: #000000;
+    -webkit-transition: .2s ease;
+    -o-transition: .2s ease;
+    transition: .2s ease;
+}
+
+.main-btn {
+    border: 1px solid #17206A;
+    color: #17206A;
+    padding: 13px 40px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: center;
+    -webkit-transition: .3s ease;
+    -o-transition: .3s ease;
+    transition: .3s ease;
+}
+
+.w-100 {
+    width: 100%;
+}
+a {
+    text-decoration: none;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+a {
+    display: inline-block;
+    cursor: pointer;
+}
+a {
+    background: 0 0;
+}
+
+.theiaStickySidebar:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.single-layout {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 13px 0;
+}
+
+.single-layout__center {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: relative;
+}
+
+
+.adv-wrapper {
+    display: block;
+    width: 100%;
+    background-color: rgba(216, 216, 216, 0.32);
+    margin-bottom: 20px;
+}
+
+element.style {
+    padding-top: 0px;
+    padding-bottom: 1px;
+    position: fixed;
+    transform: translateY(-418.4px);
+    top: 0px;
+    width: 176.425px;
+    left: 682.2px;
+}
+
+.mb-0 {
+    margin-bottom: 0px !important;
+}
+
+.pt-0 {
+    padding-top: 0px !important;
+}
+
+.single-layout__center {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: relative;
+}
+
+.pr-20 {
+    padding-right: 20px !important;
+}
+
+.single-layout__right {
+    width: 300px;
+    overflow: hidden;
+}
+
+.main-btn {
+    border: 1px solid #17206A;
+    color: #17206A;
+    padding: 13px 40px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: center;
+    -webkit-transition: .3s ease;
+    -o-transition: .3s ease;
+    transition: .3s ease;
+}
+
+.w-100 {
+    width: 100%;
+}
+a {
+    text-decoration: none;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+a {
+    display: inline-block;
+    cursor: pointer;
+}
+a {
+    background: 0 0;
+}
+
+.theiaStickySidebar:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+element.style {
+    width: 100%;
+}
+.load-more {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding-bottom: 80px;
+    padding-top: 50px;
+}
+
+.load-more__link {
+    cursor: pointer;
+    width: 100%;
+    background-color: #17206A;
+    color: #ffffff;
+    max-width: 635px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 18px 15px 18px 20px;
+    font-size: 11px;
+    background-image: url(../img/sort.svg);
+    background-repeat: no-repeat;
+    background-position: center right 15px;
+    background-size: 15px;
+    -webkit-transition: .3s ease;
+    -o-transition: .3s ease;
+    transition: .3s ease;
+}
+
+.theiaStickySidebar:after {
+    content: "";
+    display: table;
+    clear: both;
+}

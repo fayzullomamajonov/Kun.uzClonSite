@@ -1,0 +1,234 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<main style="transform: none">
+  <div class="container">
+    <div class="countries" style="transform:none;">
+        <div class="countries-list">
+          <div class="regions">Hududlar</div>
+          <ul class="list">
+            <li><a href="{% url 'toshkent' %}">Toshkent</a></li>
+            <li><a href="#">Qoraqalpog‘iston</a></li>
+            <li><a href="#">Andijon</a></li>
+            <li><a href="#">Farg‘ona</a></li>
+            <li><a href="#">Namangan</a></li>
+            <li><a href="#">Samarqand</a></li>
+            <li><a href="#">Buxoro</a></li>
+            <li><a href="#">Xorazm</a></li>
+            <li><a href="#">Surxondaryo</a></li>
+            <li><a href="#">Qashqadaryo</a></li>
+            <li><a href="#">Jizzax</a></li>
+            <li><a href="#">Sirdaryo</a></li>
+            <li><a href="#">Toshkent vil.</a></li>
+            <li><a href="#">Navoiy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <div class="container" style="transform: none">
+    <div class="single-layout" style="transform: none">
+      <div
+        class="single-layout__center sticky-content pr-20"
+        style="
+          position: relative;
+          overflow: visible;
+          box-sizing: border-box;
+          min-height: 1px;
+        "
+      >
+        <div
+          class="theiaStickySidebar"
+          style="
+            padding-top: 0px;
+            padding-bottom: 1px;
+            position: static;
+            transform: none;
+          "
+        >
+          <div class="search-block">
+            <div class="block-title mb-0 pt-10 pb-10 pl-15 bg-gray">
+              <span class="text-uppercase">Intervyu</span>
+            </div>
+          </div>
+          <div class="row" id="news-list">
+            {% for editor_new in interview_news %}
+            <div class="col-md-4 mb-25 l-item">
+              <div class="news">
+                <a
+                  class="news__img"
+                  href="{% url 'news' editor_new.pk %}"
+                  ><img
+                    src="{{ editor_new.image.url }}"
+                /></a>
+                <div class="news-meta"><span>{{ editor_new.date|date:"H:i / d.m.Y"}}</span></div>
+                <a
+                  class="news__title"
+                  href="{% url 'news' editor_new.pk %}"
+                  >{{ editor_new.title }}</a
+                >
+              </div>
+            </div>
+            {% endfor %}
+            {% if interview_news.has_next %}
+            <!-- <div class="breaking-link-wrapper audio-item audio-more"> -->
+            <button class="load-more load-more__link" style="padding:1em;" id="load-more"
+                data-next-page="{{ interview_news.next_page_number }}">Ko'proq yangiliklarni
+                ko'rish</button>
+            <!-- </div> -->
+            {% endif %}
+
+          </div>
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+              $(document).ready(function () {
+                $("#load-more").click(function () {
+                  const nextPage = $(this).data("next-page");
+                  $.get("?page=" + nextPage, function (data) {
+                    const newAudios = $(data).find(".l-item");
+                    $(".l-item:last").after(newAudios);
+
+                    const newButton = $(data).find("#load-more");
+                    if (newButton.length) {
+                      $("#load-more").data(
+                        "next-page",
+                        newButton.data("next-page")
+                      );
+                    } else {
+                      $("#load-more").remove();
+                    }
+                  });
+                });
+              });
+            </script>
+        </div>
+      </div>
+
+
+      <div
+        class="single-layout__right sticky-block"
+        style="
+          position: relative;
+          overflow: visible;
+          box-sizing: border-box;
+          min-height: 1px;
+        "
+      >
+        <div
+          class="theiaStickySidebar"
+          style="
+            padding-top: 1px;
+            padding-bottom: 1px;
+            position: static;
+            transform: none;
+          "
+        >
+          <div
+            class="mb-20"
+            id="top-news-content"
+            data='{"url":"\/uz\/news\/list?f=top","ph":true}'
+          >
+            <div class="block-title"><span>Ko‘p o‘qilganlar</span></div>
+            <a
+              class="news-recommended"
+              href="/uz/news/2023/05/02/yangi-konstitutsiya-10-ta-asosiy-ozgarish"
+              ><span
+                class="news-recommended__img"
+                style="
+                  background-image: url('https://storage.kun.uz/source/thumbnails/_medium/9/nWLnELT96el7kxDcvbPgQX-IvB_u7hCx_medium.jpg');
+                "
+              ></span>
+              <div class="pl-18">
+                <div class="news-meta"><span>07:20 / 02.05.2023</span></div>
+              </div>
+              <span class="news-recommended__title"
+                >Yangi konstitutsiya. 10 ta asosiy o‘zgarish</span
+              ></a
+            ><a
+              class="news-recommended"
+              href="/uz/news/2023/04/29/tilanchining-sirli-olimi-navoiydagi-mudhish-qotillik-tarixi"
+              ><div class="pl-18">
+                <div class="news-meta"><span>15:47 / 29.04.2023</span></div>
+              </div>
+              <span class="news-recommended__title"
+                >Tilanchining sirli o‘limi – Navoiydagi mudhish qotillik
+                tarixi&nbsp;</span
+              ></a
+            ><a
+              class="news-recommended"
+              href="/uz/news/2023/04/29/kelgusi-hafta-boshida-qanday-ob-havo-kutilayotgani-malum-qilindi"
+              ><div class="pl-18">
+                <div class="news-meta"><span>13:17 / 29.04.2023</span></div>
+              </div>
+              <span class="news-recommended__title"
+                >Kelgusi hafta boshida qanday ob-havo kutilayotgani ma’lum
+                qilindi</span
+              ></a
+            ><a
+              class="news-recommended"
+              href="/uz/news/2023/05/01/toshkentga-olib-kelingan-yangi-avtobuslar-avariya-holatida-hozircha-masullar-jim"
+              ><div class="pl-18">
+                <div class="news-meta"><span>15:45 / 01.05.2023</span></div>
+              </div>
+              <span class="news-recommended__title"
+                >Toshkentga olib kelingan yangi avtobuslardan ikkitasining tom
+                qismi ajralib tushdi</span
+              ></a
+            >
+          </div>
+          <div
+            id="recomended-news-content"
+            data='{"url":"\/uz\/news\/list?f=recommended","ph":true}'
+          >
+            <div class="block-title"><span>Tavsiya etamiz</span></div>
+            <a
+              class="news-recommended"
+              href="/uz/news/2023/05/02/sardoba-fojiasiga-3-yil-oldini-olish-mumkin-bolgan-falokat-va-uning-oqibatlari"
+              ><span
+                class="news-recommended__img"
+                style="
+                  background-image: url('https://storage.kun.uz/source/thumbnails/_medium/9/HhIzHi90AcjFU2YlZCfu409u_xDKi4Qb_medium.jpg');
+                "
+              ></span>
+              <div class="pl-18">
+                <div class="news-meta"><span>23:56 / 02.05.2023</span></div>
+              </div>
+              <span class="news-recommended__title"
+                >Sardoba fojiasiga 3 yil: oldini olish mumkin bo‘lgan falokat va
+                uning oqibatlari</span
+              ></a
+            ><a
+              class="news-recommended"
+              href="/uz/news/2023/05/02/oqituvchilar-haqidagi-qonun-loyihasi-nihoyat-kun-tartibiga-qaytdi-loyiha-qaychilangan-bolishi-mumkin"
+              ><div class="pl-18">
+                <div class="news-meta"><span>16:29 / 02.05.2023</span></div>
+              </div>
+              <span class="news-recommended__title"
+                >O‘qituvchilar haqidagi qonun loyihasi kun tartibiga qaytdi.
+                Loyiha “qaychilangan” bo‘lishi mumkin</span
+              ></a
+            ><a
+              class="news-recommended"
+              href="/uz/news/2023/05/02/yangi-konstitutsiya-10-ta-asosiy-ozgarish"
+              ><div class="pl-18">
+                <div class="news-meta"><span>07:20 / 02.05.2023</span></div>
+              </div>
+              <span class="news-recommended__title"
+                >Yangi konstitutsiya. 10 ta asosiy o‘zgarish</span
+              ></a
+            ><a
+              class="news-recommended"
+              href="/uz/news/2023/05/01/xitoyning-vassaliga-aylanayotgan-rossiya-nega-bu-endi-uyatli-hol-emas"
+              ><div class="pl-18">
+                <div class="news-meta"><span>15:09 / 01.05.2023</span></div>
+              </div>
+              <span class="news-recommended__title"
+                >«Xitoyning vassaliga aylanayotgan Rossiya»: nega bu endi uyatli
+                hol emas?</span
+              ></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,171 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/regions/toshkent.css' %}">
+<main>
+  <div class="container mb-50">
+    <div class="countries">
+      <div class="countries-list">
+        <div class="regions">Hududlar</div>
+        <ul class="list">
+            <li><a href="{% url 'toshkent' %}">Toshkent</a></li>
+            <li><a href="{% url 'qoraqalpoq' %}">Qoraqalpog‘iston</a></li>
+            <li><a href="{% url 'andijon' %}">Andijon</a></li>
+            <li><a href="{% url 'fargona' %}">Farg‘ona</a></li>
+            <li><a href="{% url 'namangan' %}">Namangan</a></li>
+            <li><a href="{% url 'samarqand' %}">Samarqand</a></li>
+            <li><a href="{% url 'buxoro' %}">Buxoro</a></li>
+            <li><a href="{% url 'xorazm' %}">Xorazm</a></li>
+            <li><a href="{% url 'surxondaryo' %}">Surxondaryo</a></li>
+            <li class="active"><a href="{% url 'qashqadaryo' %}">Qashqadaryo</a></li>
+            <li><a href="{% url 'jizzax' %}">Jizzax</a></li>
+            <li><a href="{% url 'sirdaryo' %}">Sirdaryo</a></li>
+            <li><a href="{% url 'toshkentvil' %}">Toshkent vil.</a></li>
+            <li><a href="{% url 'navoiy' %}">Navoiy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-9">
+        <div class="top-news">
+            {% for new in qashqadaryo_top %}
+            <div class="top-news__big">
+            <a class="big-news" href="{% url 'news' new.pk %}">
+                <span class="big-news__img"><img src="{{new.image.url}}" /></span>
+                <span class="big-news__content">
+                    <span class="big-news__title">{{new.title}}</span>
+                <span class="big-news__description">{{ new.short_text|safe }}</span>
+                </span>
+                </a>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="editor-choice">
+          <div class="row">
+            {% for new in qashqadaryo %}
+            <div class="col-md-4">
+              <div class="news">
+                <div class="news__img p-relative">
+                  <a class="news__category" href="#"
+                    >{{new.catigorys}}</a
+                  ><a
+                    href="{% url 'news' new.pk %}"
+                    ><img
+                      src="{{new.image.url}}"
+                  /></a>
+                </div>
+                <div class="news-meta"><span>{{ new.date|date:"H:i / d.m.Y" }}</span></div>
+                <a
+                  class="news__title"
+                  href="{% url 'news' new.pk %}"
+                  >{{new.title}}
+                  </a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+      <div
+
+      class="theiaStickySidebar"
+      style="
+        padding-top: 0px;
+        padding-bottom: 1px;
+        position: static;
+        transform: none;
+        border:1px solid;
+        margin-top:40px;
+      "
+    >
+      <div class="daily-news max-w" id="news-list">
+        {% for new_list in qashqadaryo_list %}
+        <a class="daily-block l-item" href="{% url 'news' new_list.pk %}">
+          <p class="news-date">{{new_list.date|date:"H:i"}}</p>
+          <div class="right-block">
+            <p class="news-title">{{new_list.title}}</p>
+            <div class="description-box">
+              <img src="{{ new_list.image.url }}" />
+              <div>
+                <span class="description"
+                  >{{ new_list.short_text|safe|truncatewords:20 }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+
+        {% if qashqadaryo_list.has_next %}
+        <!-- <div class="breaking-link-wrapper audio-item audio-more"> -->
+        <center>
+            <button style=" margin-bottom:20px;" class="load-more load-more__link" style="padding:1em;" id="load-more"
+            data-next-page="{{ qashqadaryo_list.next_page_number }}">Ko'proq yangiliklarni
+            ko'rish</button>
+        </center>
+        <!-- </div> -->
+        {% endif %}
+      </div>
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+        $(document).ready(function () {
+          $("#load-more").click(function () {
+            const nextPage = $(this).data("next-page");
+            $.get("?page=" + nextPage, function (data) {
+              const newAudios = $(data).find(".l-item");
+              $(".l-item:last").after(newAudios);
+
+              const newButton = $(data).find("#load-more");
+              if (newButton.length) {
+                $("#load-more").data(
+                  "next-page",
+                  newButton.data("next-page")
+                );
+              } else {
+                $("#load-more").remove();
+              }
+            });
+          });
+        });
+      </script>
+
+  
+    </div>
+    </div>
+
+
+
+    <div style="float: right;" class="col-md-3">
+        <div class="block-title mb-10"><span> Qashqadaryo ayni damda</span></div>
+
+        <div class="province-slider swiper-container mb-20">
+          <div class="swiper-wrapper">
+            {% for new in now_in_qashqadaryo %}
+            <div class="ps-item swiper-slide">
+              <a
+                href="{% url 'news' new.pk %}"
+                ><img style="width: 300px; height:380px;"
+                  src="{{new.image.url}}"
+              /></a>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="block-title"><span>So‘nggi yangiliklar</span></div>
+        <div class="mb-25">
+            {% for new in today_new %}
+          <a class="news-lenta" href="{% url 'news' new.pk %}">
+            <div class="news-meta"><span>{{new.date|date:"h:i"}}</span></div>
+            <span class="news-lenta__title">
+             {{new.title}}</span>
+          </a>
+          {% endfor %}
+
+        </div>
+      </div>
+  </div>
+</main>
+
+{% endblock %}
