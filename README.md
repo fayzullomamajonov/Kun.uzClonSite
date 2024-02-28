@@ -3,7 +3,7 @@
   src="/static/images/screenshot.jpg"
   alt="Alt text"
   title="Optional title"
-  style="display: inline-block; margin: 0 auto; max-width: 300px">
+  style="display: inline-block; margin: 20 auto; max-width: 300px">
 
 <img
   src="/static/images/screenshot1.jpg"
