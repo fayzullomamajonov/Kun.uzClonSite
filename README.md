@@ -1,3 +1,7 @@
 <h1 style="text-align:center">Kun.uz</h1>
-![GitHub Logo](https://github.com/fayzullomamajonov/Kun.uzClonSite/blob/master/readme/1.jpg)
-![GitHub Logo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
+<img
+  src="/static/images/screenshot.jpg"
+  alt="Alt text"
+  title="Optional title"
+  style="display: inline-block; margin: 0 auto; max-width: 300px">
+
